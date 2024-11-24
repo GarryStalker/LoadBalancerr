@@ -59,6 +59,7 @@ ghz --insecure \
 4. Также мы могли бы добавить трейсинг opentelemetry: в данном сервисе как и все остальное это будет выглядеть избыточным, но на реальном проде без этого не обойтись;
 
 5. Можно подметить, что алгоритм балансировки немного необычный, все-таки в продакшене мы бы использовали либо round robbin, Weighted Round Robin, Least Connections ну или Destination Hash Scheduling;
+   
 6. Нужно покрыть код приложения тестами, включая юнит-тесты для проверки логики метода Redirect. Также необходимо добавить интеграционные тесты для проверки корректной работы сервиса через gRPC-интерфейс.
 
 7. Как вариант, логгер можно было бы прокидывать в контексте, используя `loggerCtxKey struct{}`, было бы возможно даже элегантнее, но оставил как есть по итогу;
@@ -84,3 +85,5 @@ ghz --insecure \
 ```
 Скрин работы программы: 
 ![in_progress](https://github.com/GarryStalker/LoadBalancerr/blob/main/pics/inProgress.jpg?raw=true)
+
+#[PROTOs](https://github.com/GarryStalker/loadBalancer_protos)
