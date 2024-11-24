@@ -7,10 +7,18 @@ import (
 	"github.com/ilyakaznacheev/cleanenv"
 )
 
+type Environment string
+
+const (
+	EnvLocal Environment = "local"
+	EnvDev   Environment = "dev"
+	EnvProd  Environment = "prod"
+)
+
 type Config struct {
-	Env     string `yaml:"env" env-default:"local"`
-	Port    string `yaml:"port" env-default:":443"`
-	CNDHost string `yaml:"cdn_host" env-default:"https://cdn.example.com"`
+	Env     Environment `yaml:"env" env-default:"local"`
+	Port    string      `yaml:"port" env-default:":443"`
+	CDNHost string      `yaml:"cdn_host" env-default:"https://cdn.example.com"`
 }
 
 func MustLoad() *Config {
@@ -37,14 +45,14 @@ func MustLoadByPath(configPath string) *Config {
 }
 
 func fetchConfigPath() string {
-	var res string
+	var configPath string
 
-	flag.StringVar(&res, "config", "", "path to config file")
+	flag.StringVar(&configPath, "config", "./config/local.yaml", "path to config file")
 	flag.Parse()
 
-	if res == "" {
-		res = os.Getenv("CONFIG_PATH")
+	if configPath == "" {
+		configPath = os.Getenv("CONFIG_PATH")
 	}
 
-	return res
+	return configPath
 }

@@ -3,6 +3,7 @@ package server
 import (
 	"context"
 	"log/slog"
+	"strings"
 
 	"github.com/GarryStalker/loadBalancer/internal/config"
 	"github.com/GarryStalker/loadBalancer/internal/service"
@@ -21,20 +22,20 @@ type LoadBalancerServer struct {
 func New(cfg *config.Config, log *slog.Logger) *LoadBalancerServer {
 	return &LoadBalancerServer{
 		cfg:    cfg,
-		router: service.New(cfg.CNDHost, log),
+		router: service.New(cfg.CDNHost, log),
 		log:    log,
 	}
 }
 
 func (s *LoadBalancerServer) Redirect(ctx context.Context, in *lbv1.Request) (*lbv1.Response, error) {
-
-	if in.Video == "" {
+	videoURL := strings.TrimSpace(in.GetVideo())
+	if videoURL == "" {
 		return nil, status.Error(codes.InvalidArgument, "url is required")
 	}
 
-	targetURL, err := s.router.GetTargetURL(in.GetVideo())
+	targetURL, err := s.router.GetTargetURL(videoURL)
 	if err != nil {
-		return nil, status.Error(codes.Internal, "Failed to get target url")
+		return nil, status.Error(codes.Internal, "failed to get target url")
 	}
 	return &lbv1.Response{Redirect: targetURL}, nil
 }
