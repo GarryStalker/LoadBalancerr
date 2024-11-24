@@ -47,7 +47,7 @@ ghz --insecure \
     localhost:443
 ```
 Результаты при минутном тестировании: 
-![](https://github.com/GarryStalker/LoadBalancerr/pics/loadTest.jpg)
+![load_test](https://github.com/GarryStalker/LoadBalancerr/blob/main/pics/loadTest.jpg?raw=true)
 ## Нюансы и что можно было бы улучшить
 
 1. config.go мог бы возвращать ошибку, которую мы могли бы в main обрабатывать. Но так как конфиг всегда должен быть загружен в приложение, иначе оно не запустится, было принято решение, что паниковать в данном случае приемлемо;
@@ -83,4 +83,4 @@ ghz --insecure \
     localhost:443
 ```
 Скрин работы программы: 
-![](https://github.com/GarryStalker/LoadBalancerr/pics/inProgress.jpg)
+![in_progress](https://github.com/GarryStalker/LoadBalancerr/blob/main/pics/inProgress.jpg?raw=true)
