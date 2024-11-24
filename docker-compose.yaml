@@ -1,0 +1,5 @@
+services:
+  load-balancer:
+    build: ./
+    ports:
+      - 443:443
