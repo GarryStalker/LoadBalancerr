@@ -33,7 +33,7 @@ grpcurl -d '{"video": "http://s1.origin-cluster/video/123/xcg2djHckad.m3u8"}' \`
 где:
 + s1 - сервер в кластере оригиналов
 + $CDN_HOST - настраиваемый через env url сервиса CDN.
-
+## [PROTOs](https://github.com/GarryStalker/loadBalancer_protos)
 ## Тесты
 
 Для нагрузочного тестирования использовался инструмент [gHz](https://github.com/bojand/ghz):
@@ -86,4 +86,3 @@ ghz --insecure \
 Скрин работы программы: 
 ![in_progress](https://github.com/GarryStalker/LoadBalancerr/blob/main/pics/inProgress.jpg?raw=true)
 
-#[PROTOs](https://github.com/GarryStalker/loadBalancer_protos)
